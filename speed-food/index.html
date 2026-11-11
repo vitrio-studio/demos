@@ -25,9 +25,9 @@ nav.solid{background:rgba(22,12,8,.72);backdrop-filter:blur(14px);border-bottom:
 @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(65,196,99,0)}100%{box-shadow:0 0 0 0 rgba(65,196,99,0)}}
 
 /* HERO 3D */
-.hero{position:relative;height:220vh}
+.hero{position:relative;height:160vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden}
-#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.photo{position:absolute;inset:-6%;overflow:hidden;will-change:transform}.photo img{width:100%;height:100%;object-fit:cover;object-position:60% 50%;transform:scale(1.12);transition:transform 2.4s cubic-bezier(.2,.8,.2,1),filter 2.4s;filter:saturate(1.1) brightness(.7)}.ready .photo img{transform:scale(1.02);filter:saturate(1.15) brightness(.85)}.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,12,8,.92) 0%,rgba(22,12,8,.55) 45%,rgba(22,12,8,.1) 75%),linear-gradient(0deg,rgba(22,12,8,.95) 0%,transparent 40%)}@media(max-width:860px){.shade{background:linear-gradient(0deg,rgba(22,12,8,.97) 25%,rgba(22,12,8,.35) 65%,rgba(22,12,8,.55) 100%)}}
 .glow{position:absolute;inset:0;background:radial-gradient(60% 50% at 70% 55%,rgba(243,154,50,.22),transparent 70%),radial-gradient(40% 40% at 15% 20%,rgba(226,65,42,.18),transparent 70%);pointer-events:none}
 .grain{position:absolute;inset:-50%;opacity:.07;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 8s steps(8) infinite}
 @keyframes grain{to{transform:translate(10%,6%)}}
@@ -75,10 +75,8 @@ h2 em{font-style:italic;font-weight:600;color:var(--orange)}
 .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .spec{position:relative;background:linear-gradient(160deg,#2b170e,#1b0f0a);border:1px solid var(--line);border-radius:28px;padding:30px 28px 32px;overflow:hidden;transform-style:preserve-3d;transition:transform .2s ease-out,border-color .4s}
 .spec:hover{border-color:rgba(243,154,50,.5)}
-.spec .art{height:210px;display:grid;place-items:center;margin-bottom:12px;transform:translateZ(40px)}
-.spec .art svg{width:190px;height:190px;filter:drop-shadow(0 24px 30px rgba(0,0,0,.5));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.spec:hover .art svg{transform:scale(1.08) rotate(-6deg)}
-.spec .num{position:absolute;top:22px;right:26px;font-family:Fraunces,serif;font-size:14px;color:var(--mut)}
+.spec .art{height:260px;margin:-30px -28px 22px;overflow:hidden;border-radius:28px 28px 0 0;position:relative}.spec .art:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#1b0f0a 0%,transparent 55%)}.spec .art img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}.spec:hover .art img{transform:scale(1.08)}
+.spec .num{position:absolute;top:18px;right:20px;z-index:2;background:rgba(22,12,8,.6);backdrop-filter:blur(6px);padding:4px 10px;border-radius:999px;font-family:Fraunces,serif;font-size:14px;color:var(--mut)}
 .spec h3{font-family:Fraunces,serif;font-size:30px;font-weight:900;margin-bottom:6px}
 .spec p{color:var(--mut);font-size:15px}
 
@@ -113,7 +111,6 @@ footer{text-align:center;padding:50px 20px 120px;color:var(--mut);font-size:13px
 .rv.in{opacity:1;transform:none}
 .cursor{position:fixed;width:18px;height:18px;border-radius:50%;background:var(--orange);mix-blend-mode:difference;pointer-events:none;z-index:60;transform:translate(-50%,-50%);transition:width .25s,height .25s;opacity:0}
 @media(hover:hover){.cursor{opacity:.9}}
-.nogl:after{content:'';position:absolute;right:8%;top:50%;width:min(44vw,520px);aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle at 35% 40%,#d6402b 0 6%,transparent 6.5%),radial-gradient(circle at 62% 30%,#d6402b 0 6%,transparent 6.5%),radial-gradient(circle at 55% 62%,#d6402b 0 6%,transparent 6.5%),radial-gradient(circle at 40% 70%,#fff1c9 0 7%,transparent 7.5%),radial-gradient(circle at 70% 50%,#fff1c9 0 7%,transparent 7.5%),radial-gradient(circle,#c8321d 0 60%,#e9a95a 61% 70%,#c77a2c 71%);box-shadow:0 40px 80px rgba(0,0,0,.5);animation:spin 40s linear infinite}@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
 @media(max-width:860px){.demo{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}nav{top:26px}.copy{transition:opacity .2s}.specs,.story,.info{grid-template-columns:1fr}.rating{top:auto;bottom:auto;display:none}.copy{bottom:110px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
@@ -128,7 +125,7 @@ footer{text-align:center;padding:50px 20px 120px;color:var(--mut);font-size:13px
 
 <header class="hero" id="hero">
   <div class="stage">
-    <canvas id="gl"></canvas>
+    <div class="photo" id="photo"><img src="https://images.unsplash.com/photo-1599588967784-e5449357dda3?fm=jpg&q=70&w=2400&auto=format&fit=crop" alt="Pizza sortie du four" fetchpriority="high"></div><div class="shade"></div>
     <div class="glow"></div>
     <div class="grain"></div>
     <div class="rating"><b>4,9</b><span>★★★★★</span><small>131 avis Google</small></div>
@@ -138,7 +135,7 @@ footer{text-align:center;padding:50px 20px 120px;color:var(--mut);font-size:13px
       <p class="sub">Pizzas, arancini et cannoli faits avec soin, à deux pas de Lausanne. On passe, on choisit, on repart avec le meilleur du Sud.</p>
       <div class="row"><a class="cta" href="tel:+41213113064">📞 Appeler pour commander</a><a class="ghost" href="#infos">Horaires & adresse</a></div>
     </div>
-    <div class="split" id="split"><div class="serif">Une part<br>de Sicile.</div><p>Cuite au four, à emporter chaud.</p></div>
+    <div class="split" id="split"><div class="serif">Une part<br>de Sicile.</div><p>Préparée sur place, à emporter chaude.</p></div>
     <div class="hint">Défiler</div>
   </div>
 </header>
@@ -150,13 +147,13 @@ footer{text-align:center;padding:50px 20px 120px;color:var(--mut);font-size:13px
   <p class="lead rv">Ce que les clients recommandent le plus, encore et encore.</p>
   <div class="specs">
     <div class="spec rv"><span class="num">01</span>
-      <div class="art"><svg viewBox="0 0 200 200"><defs><linearGradient id="cr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b25c"/><stop offset="1" stop-color="#c77a2c"/></linearGradient><radialGradient id="ch" cx=".5" cy=".3"><stop offset="0" stop-color="#ffe7a6"/><stop offset="1" stop-color="#f3b74b"/></radialGradient></defs><path d="M100 185 L22 40 Q100 5 178 40 Z" fill="url(#ch)"/><path d="M22 40 Q100 5 178 40 Q182 52 172 58 Q100 24 28 58 Q18 52 22 40Z" fill="url(#cr)"/><circle cx="82" cy="78" r="15" fill="#d6402b"/><circle cx="82" cy="78" r="15" fill="none" stroke="#a82c1c" stroke-width="3" stroke-dasharray="4 5"/><circle cx="124" cy="72" r="13" fill="#d6402b"/><circle cx="104" cy="118" r="12" fill="#d6402b"/><ellipse cx="120" cy="104" rx="9" ry="5" fill="#4f7c2c" transform="rotate(-30 120 104)"/><ellipse cx="78" cy="106" rx="8" ry="4.5" fill="#4f7c2c" transform="rotate(25 78 106)"/><path d="M96 150 q4 10 0 22" stroke="#ffe7a6" stroke-width="6" stroke-linecap="round" fill="none"/></svg></div>
+      <div class="art"><img src="https://images.unsplash.com/photo-1599588967784-e5449357dda3?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Pizza" loading="lazy"></div>
       <h3>Pizzas</h3><p>Pâte, garniture et cuisson soignées. Le repas chaud à emporter qui fait plaisir.</p></div>
     <div class="spec rv"><span class="num">02</span>
-      <div class="art"><svg viewBox="0 0 200 200"><defs><radialGradient id="ar" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffcf6e"/><stop offset=".55" stop-color="#e98a2b"/><stop offset="1" stop-color="#9c4a16"/></radialGradient></defs><path d="M100 22 C140 50 168 92 160 132 C152 170 48 170 40 132 C32 92 60 50 100 22Z" fill="url(#ar)"/><g fill="#ffe2a0" opacity=".7"><circle cx="78" cy="96" r="3"/><circle cx="96" cy="70" r="2.5"/><circle cx="120" cy="110" r="3"/><circle cx="88" cy="132" r="2.5"/><circle cx="130" cy="84" r="2"/><circle cx="110" cy="146" r="2.5"/><circle cx="66" cy="120" r="2"/></g><g fill="#7a3a10" opacity=".35"><circle cx="104" cy="96" r="2.5"/><circle cx="72" cy="80" r="2"/><circle cx="140" cy="128" r="2.5"/><circle cx="118" cy="62" r="2"/></g><ellipse cx="100" cy="176" rx="52" ry="8" fill="#000" opacity=".25"/></svg></div>
+      <div class="art"><img src="https://images.unsplash.com/photo-1751199393315-fbcae4eabd4c?fm=jpg&q=70&w=1200&auto=format&fit=crop" alt="Arancini à la sauce tomate" loading="lazy"></div>
       <h3>Arancini</h3><p>Les boulettes de riz siciliennes, dorées et croustillantes. Le classique de la maison.</p></div>
     <div class="spec rv"><span class="num">03</span>
-      <div class="art"><svg viewBox="0 0 200 200"><defs><linearGradient id="sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9a74e"/><stop offset="1" stop-color="#a8611f"/></linearGradient></defs><g transform="rotate(-28 100 100)"><rect x="40" y="76" width="120" height="48" rx="24" fill="url(#sh)"/><g stroke="#8a4c16" stroke-width="3" opacity=".5"><path d="M64 78v44M84 78v44M104 78v44M124 78v44M144 80v40"/></g><ellipse cx="38" cy="100" rx="20" ry="26" fill="#fff6e6"/><ellipse cx="162" cy="100" rx="20" ry="26" fill="#fff6e6"/><g fill="#5c8a2e"><circle cx="30" cy="92" r="3"/><circle cx="42" cy="108" r="3"/><circle cx="170" cy="94" r="3"/><circle cx="158" cy="108" r="2.6"/></g><g fill="#3a1d0e"><circle cx="36" cy="104" r="2"/><circle cx="164" cy="102" r="2"/></g></g><g fill="#fff" opacity=".85"><circle cx="70" cy="58" r="2"/><circle cx="130" cy="52" r="1.6"/><circle cx="150" cy="70" r="2"/></g></svg></div>
+      <div class="art"><img src="https://images.unsplash.com/photo-1749767138348-2e5bf1cbcef2?fm=jpg&q=70&w=1200&auto=format&fit=crop" alt="Cannoli siciliens" loading="lazy"></div>
       <h3>Cannoli</h3><p>Le dessert sicilien par excellence, croquant dehors, crémeux dedans.</p></div>
   </div>
 </section>
@@ -185,14 +182,14 @@ footer{text-align:center;padding:50px 20px 120px;color:var(--mut);font-size:13px
   </div>
 </section>
 
-<footer>Speed Food · Route de Cossonay 25 · 1008 Prilly · <a href="tel:+41213113064">021 311 30 64</a><br>Site réalisé par Studio Vitrio</footer>
+<footer>Speed Food · Route de Cossonay 25 · 1008 Prilly · <a href="tel:+41213113064">021 311 30 64</a><br>Site réalisé par Studio Vitrio · Photos d'illustration</footer>
 <div class="float" id="float"><a class="call" href="tel:+41213113064">📞 Appeler</a><a href="https://maps.google.com/?q=Speed+Food+Route+de+Cossonay+25+1008+Prilly" target="_blank" rel="noopener">📍 Itinéraire</a></div>
 
 <script>
 const prog={v:0};
 // progression du défilement dans le hero
 const hero=document.getElementById('hero'),split=document.getElementById('split'),nav=document.getElementById('nav'),fl=document.getElementById('float'),copy=document.querySelector('.copy');
-function onScroll(){const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;prog.v=Math.min(1,Math.max(0,-r.top/tot));copy.style.opacity=1-Math.min(1,Math.max(0,(prog.v-.25)*3));split.classList.toggle('on',prog.v>.45&&prog.v<.98);nav.classList.toggle('solid',scrollY>40);fl.classList.toggle('on',scrollY>innerHeight*.6)}
+function onScroll(){const r=hero.getBoundingClientRect(),tot=hero.offsetHeight-innerHeight;prog.v=Math.min(1,Math.max(0,-r.top/tot));copy.style.opacity=1-Math.min(1,Math.max(0,(prog.v-.25)*3));split.classList.toggle('on',prog.v>.3&&prog.v<.98);document.getElementById('photo').style.transform='translateY('+(prog.v*8)+'%) scale('+(1+prog.v*.12)+')';nav.classList.toggle('solid',scrollY>40);fl.classList.toggle('on',scrollY>innerHeight*.6)}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 requestAnimationFrame(()=>document.body.classList.add('ready'));
 
@@ -221,84 +218,6 @@ const cur=document.getElementById('cur');addEventListener('pointermove',e=>{cur.
 document.querySelectorAll('a').forEach(a=>{a.addEventListener('pointerenter',()=>{cur.style.width=cur.style.height='46px'});a.addEventListener('pointerleave',()=>{cur.style.width=cur.style.height='18px'})});
 
 </script>
-<script type="module">
-let THREE;
-for(const u of ['../lib/three.module.min.js','https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js','https://unpkg.com/three@0.170.0/build/three.module.min.js']){try{THREE=await import(u);break}catch(e){}}
-if(!THREE){document.getElementById('gl').style.display='none';document.querySelector('.stage').classList.add('nogl')}else{
 
-
-const canvas=document.getElementById('gl');
-let renderer;
-try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true})}catch(e){renderer=null}
-
-if(renderer){
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.shadowMap.enabled=true;
-renderer.toneMapping=THREE.ACESFilmicToneMapping;
-const scene=new THREE.Scene();
-const cam=new THREE.PerspectiveCamera(35,1,.1,100);
-scene.add(new THREE.HemisphereLight(0xffe2bd,0x2a120a,1.1));
-const key=new THREE.DirectionalLight(0xfff0dd,2.6);key.position.set(4,8,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
-const rim=new THREE.PointLight(0xff6a2a,30,20);rim.position.set(-4,1,-3);scene.add(rim);
-
-// texture de bruit pour la pâte
-function noiseTex(c1,c2,dots){const cv=document.createElement('canvas');cv.width=cv.height=256;const g=cv.getContext('2d');g.fillStyle=c1;g.fillRect(0,0,256,256);for(let i=0;i<dots;i++){g.fillStyle=Math.random()<.5?c2:'rgba(255,255,255,.08)';g.globalAlpha=Math.random()*.5;g.beginPath();g.arc(Math.random()*256,Math.random()*256,Math.random()*5+1,0,7);g.fill()}const t=new THREE.CanvasTexture(cv);t.colorSpace=THREE.SRGBColorSpace;return t}
-const doughM=new THREE.MeshStandardMaterial({map:noiseTex('#e9a95a','#a85d22',900),roughness:.85});
-const sauceM=new THREE.MeshStandardMaterial({map:noiseTex('#c8321d','#7e1a0e',500),roughness:.55});
-const cheeseM=new THREE.MeshStandardMaterial({color:0xfff1c9,roughness:.45});
-const salamiM=new THREE.MeshStandardMaterial({map:noiseTex('#b8291a','#f4b8a0',300),roughness:.5});
-const basilM=new THREE.MeshStandardMaterial({color:0x3f7a2a,roughness:.6,side:THREE.DoubleSide});
-const oliveM=new THREE.MeshStandardMaterial({color:0x1d1712,roughness:.25,metalness:.2});
-
-const pizza=new THREE.Group();scene.add(pizza);
-const N=6,R=1.6,slices=[];
-for(let i=0;i<N;i++){
-  const s=new THREE.Group(),a0=i*Math.PI*2/N,al=Math.PI*2/N;
-  const base=new THREE.Mesh(new THREE.CylinderGeometry(R,R,.16,48,1,false,a0,al),doughM);base.castShadow=base.receiveShadow=true;s.add(base);
-  const crust=new THREE.Mesh(new THREE.TorusGeometry(R-.04,.13,14,48,al),doughM);crust.rotation.x=Math.PI/2;crust.rotation.z=-a0+Math.PI/2-al;crust.position.y=.08;crust.castShadow=true;
-  // torus arc orientation
-  crust.rotation.set(Math.PI/2,0,0);crust.rotateZ(-(a0+al)+Math.PI/2);s.add(crust);
-  const sauce=new THREE.Mesh(new THREE.CylinderGeometry(R-.16,R-.16,.04,48,1,false,a0,al),sauceM);sauce.position.y=.1;s.add(sauce);
-  const mid=a0+al/2;
-  const pol=(r,t)=>[Math.sin(t)*r,Math.cos(t)*r];
-  for(let k=0;k<3;k++){const t=a0+al*(.25+.5*Math.random()),r=.35+Math.random()*.9;const[x,z]=pol(r,t);const ch=new THREE.Mesh(new THREE.SphereGeometry(.17+Math.random()*.06,16,12),cheeseM);ch.scale.y=.28;ch.position.set(x,.14,z);s.add(ch)}
-  {const t=mid+(Math.random()-.5)*al*.4,r=.85;const[x,z]=pol(r,t);const sl=new THREE.Mesh(new THREE.CylinderGeometry(.2,.2,.04,24),salamiM);sl.position.set(x,.15,z);sl.castShadow=true;s.add(sl)}
-  {const t=mid+al*.25,r=1.2;const[x,z]=pol(r,t);const ol=new THREE.Mesh(new THREE.TorusGeometry(.06,.035,10,20),oliveM);ol.rotation.x=Math.PI/2;ol.position.set(x,.15,z);s.add(ol)}
-  if(i%2==0){const t=mid-al*.2,r=.6;const[x,z]=pol(r,t);const lf=new THREE.Mesh(new THREE.SphereGeometry(.16,16,10),basilM);lf.scale.set(1,.12,.55);lf.rotation.y=Math.random()*3;lf.position.set(x,.2,z);s.add(lf)}
-  s.userData={dir:new THREE.Vector3(Math.sin(mid),0,Math.cos(mid))};
-  pizza.add(s);slices.push(s);
-}
-// plateau d'ombre
-const shadowPlane=new THREE.Mesh(new THREE.CircleGeometry(4,48),new THREE.ShadowMaterial({opacity:.35}));shadowPlane.rotation.x=-Math.PI/2;shadowPlane.position.y=-.4;shadowPlane.receiveShadow=true;scene.add(shadowPlane);
-
-// ingrédients flottants
-const floaters=[];
-const mk=(geo,mat,sc)=>{const m=new THREE.Mesh(geo,mat);m.scale.copy(sc);m.castShadow=true;scene.add(m);floaters.push({m,ph:Math.random()*6,sp:.4+Math.random()*.6,base:new THREE.Vector3((Math.random()-.5)*7,Math.random()*2.6-.4,(Math.random()-.5)*3-1)});return m};
-const aranM=new THREE.MeshStandardMaterial({map:noiseTex('#e7892a','#8f4512',1200),roughness:.9});
-for(let i=0;i<3;i++)mk(new THREE.SphereGeometry(.28,24,18),aranM,new THREE.Vector3(1,1.25,1));
-for(let i=0;i<6;i++)mk(new THREE.SphereGeometry(.16,16,10),basilM,new THREE.Vector3(1,.12,.55));
-const tomM=new THREE.MeshStandardMaterial({color:0xd8331f,roughness:.3});
-for(let i=0;i<4;i++)mk(new THREE.SphereGeometry(.14,20,14),tomM,new THREE.Vector3(1,1,1));
-
-let mx=0,my=0;addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();const mob=w<860;pizza.position.x=mob?0:1.6;pizza.position.z=mob?-1.6:0;pizza.scale.setScalar(mob?.78:1)}
-addEventListener('resize',resize);resize();
-const clock=new THREE.Clock();
-(function loop(){
-  const t=clock.getElapsedTime(),p=prog.v;
-  const mob=canvas.clientWidth<860;
-  cam.position.set(mx*.6,3.4-p*1.4+(mob?1.2:0),6.4-p*1.2+(mob?1.5:0));cam.lookAt(pizza.position.x*.55,mob?.55:0,0);
-  pizza.rotation.y=t*.25+p*2.2;pizza.rotation.x=.18+my*.15-p*.15;
-  pizza.position.y=(mob?1.25:0)+Math.sin(t*1.2)*.06;
-  const ex=Math.max(0,(p-.25)/.6);
-  slices.forEach((s,i)=>{const e=ex*.55;s.position.copy(s.userData.dir).multiplyScalar(e);s.position.y=e*(i%2?.25:.1);s.rotation.z=e*.15*(i%2?1:-1)});
-  floaters.forEach(f=>{f.m.position.set(f.base.x+Math.sin(t*f.sp+f.ph)*.25,f.base.y+Math.sin(t*f.sp*1.3+f.ph)*.3+p*1.2,f.base.z);f.m.rotation.x+=.004;f.m.rotation.y+=.006});
-  renderer.render(scene,cam);requestAnimationFrame(loop);
-})();
-}
-
-
-}
-</script>
 </body>
 </html>
